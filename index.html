@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="author" content="Tom Weatherhead" />
+        <meta name="description" content="Tic-Tac-Toe" />
+
+        <title>Tic-Tac-Toe</title>
+
+		<meta charset="utf-8" />
+        <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico" />
+
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    <body class="standardBody">
+        <div id="topContent">Tic-Tac-Toe</div>
+
+        <div id="mainContent" class="box centreText">
+            <table id="board" class="centreUsingMargins tightBox">
+                <!-- We will use jQuery to populate this table when the document is ready. -->
+            </table>
+
+            <p id="turnMessage"></p>
+
+            <input type="button" name="btnNewGame" id="btnNewGame" value="New Game" onclick="newGame()" />
+        </div>
+
+        <div id="leftContentOuter">
+            <div id="leftContent">
+                <p class="playerTitleText">X</p>
+
+                <!-- <p>Number of pieces: <span id="numberOfWhitePiecesID"></span></p> -->
+
+                <p><input type="checkbox" id="cbAutomateX" onchange="cbAutomateX_onChange()" /> Automate</p>
+
+                <p>Lookahead depth:
+                    <select id="ddlLookaheadX" onchange="ddlLookaheadX_onChange()">
+                        <!-- We will use jQuery to populate this drop-down list when the document is ready. -->
+                    </select>
+                </p>
+            </div>
+        </div>
+
+        <div id="rightContentOuter">
+            <div id="rightContent">
+                <p class="playerTitleText">O</p>
+
+                <!-- <p>Number of pieces: <span id="numberOfBlackPiecesID"></span></p> -->
+
+                <p><input type="checkbox" id="cbAutomateO" onchange="cbAutomateO_onChange()" /> Automate</p>
+
+                <p>Lookahead depth:
+                    <select id="ddlLookaheadO" onchange="ddlLookaheadO_onChange()">
+                        <!-- We will use jQuery to populate this drop-down list when the document is ready. -->
+                    </select>
+                </p>
+            </div>
+        </div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
