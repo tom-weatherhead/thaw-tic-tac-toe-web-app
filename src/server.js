@@ -1,7 +1,4 @@
-// node-js-express-template/server.js
-
-// An example of a simple Express.js Web server.
-// Tom Weatherhead - August 1, 2017
+// thaw-tic-tac-toe-web-app/src/server.js
 
 'use strict';
 

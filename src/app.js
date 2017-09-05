@@ -1,7 +1,4 @@
-﻿// node-js-express-template/app.js
-
-// An example of a simple Express.js Web server.
-// Tom Weatherhead - August 1, 2017
+﻿// thaw-tic-tac-toe-web-app/src/app.js
 
 'use strict';
 
@@ -31,9 +28,9 @@ const app = express();
 // Minimal:
 
 // app.use(function(req, res, next) {
-	// res.header("Access-Control-Allow-Origin", "null");
-	// res.header("GET");
-	// next();
+//	res.header("Access-Control-Allow-Origin", "null");
+//	res.header("GET");
+//	next();
 // });
 
 // **** Cross-Origin Resource Sharing: End ****
@@ -45,7 +42,7 @@ app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-app.get('/tictactoe/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
+app.get('/tictactoe/:board([EXO]{9})/:maxPly([0-9]{1})', function (req, res) {
 	const boardString = req.params.board;
 	const maxPly = req.params.maxPly;
 	const descriptor = {
