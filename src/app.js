@@ -9,6 +9,8 @@
 const express = require('express');
 const path = require('path');
 
+const httpJsonRequest = require('thaw-http-json-request');
+
 const app = express();
 
 // **** Cross-Origin Resource Sharing: Begin ****
@@ -38,116 +40,51 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// **** Request Event Handlers: Begin ****
-
 app.get('/', function (req, res) {
 	console.log('GET / : Sending the file index.html');
 	res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-
-
-
-
-
-const http = require('http');		// See https://nodejs.org/api/http.html
-	
-app.get('/foo/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
-	let boardString = req.params.board;
-	let maxPly = req.params.maxPly;
-	let web_service_request_options_object = {
+app.get('/tictactoe/:board([EXO]{9})/:maxPly([0-9]{1})', function(req, res) {
+	const boardString = req.params.board;
+	const maxPly = req.params.maxPly;
+	const descriptor = {
+		noHttps: true,
+		headers: { accept: 'application/json; charset=utf-8' },
 		host: 'localhost',
 		port: 3000,
 		path: '/tictactoe/' + boardString + '/' + maxPly
 	};
 
-	var request = http.get(web_service_request_options_object, (response) => {
-	// var request = http.json(web_service_request_options_object, (response) => {
-		// console.log('The response from the Web service is:', response);
+	httpJsonRequest
+		.get(descriptor)
+		.then(jsonResult => {
+			// console.log('httpJsonRequest.get() succeeded! Returned JSON data is:\n\n', jsonResult, '\n');
+			res.json(jsonResult);
+		})
+		.fail(error => {
+			console.error('httpJsonRequest.get() returned an error:\n\n', error, '\n');
+			// console.error('error.statusCode:', error.statusCode);
+			// console.error('error.statusMessage:', error.statusMessage);
 
-		const statusCode = response.statusCode;
-		const statusMessage = response.statusMessage;
-		const contentType = response.headers['content-type'];
-
-		console.log('Response: Status code:', statusCode, statusMessage);
-		// console.log('Response: Headers:', response.headers);
-		console.log('Response: Content type:', contentType);
-
-		let error;
-
-		if (statusCode !== 200) {
-			// error = new Error(`HTTP request to financial data service failed.\nHTTP status code: ${statusCode}`);
-			error = new Error('HTTPS request to Web service failed.\nHTTPS status: ' + statusCode + ' ' + statusMessage);
-		// } else if (!/^application\/json/.test(contentType)) {
-			// Google Finance does not respond with application/json.
-			// error = new Error(`Invalid content-type.\nExpected application/json but received ${contentType}`);
-		}
-
-		if (error) {
-			var errorMessage = 'Error in https-json-request.service: ' + error.message;
+			const errorMessage = 'Error during httpJsonRequest: ' + error.message;
 
 			console.error(errorMessage);
-			response.resume();				// Consume the response data to free up memory.
-			// deferred.reject(errorMessage);
 			res.status(500).send(errorMessage);
-		}
-
-		// console.log('The response from the Web service is:', response);
-		// console.log('response.body:', response.body);
-		// res.json(response.body);
-		response.setEncoding('utf8');
-
-		let rawData = '';
-
-		response.on('data', (chunk) => { rawData += chunk; });
-
-		response.on('end', () => {
-			try {
-				// console.log('The raw data from the Web service response is:', rawData);
-				var jsonData = JSON.parse(rawData);
-				// console.log('The JSON data parsed from the Web service response is:', parsedData);
-				// deferred.resolve(jsonData);
-				res.json(jsonData);
-			} catch (error) {
-				var errorMessage = 'Error in https-json-request.service while parsing the response as JSON: ' + error.message;
-
-				console.error(errorMessage);
-				// deferred.reject(errorMessage);
-				res.status(500).send(errorMessage);
-			}
-		});
-	}).on('error', (error) => {
-		var errorMessage = 'Inside on(error) : Error in https-json-request.service: ' + error.message;
-
-		// console.error(`Got error: ${error.message}`);
-		console.error(error);
-		console.error(errorMessage);
-		deferred.reject(errorMessage);
-	});
+		})
+		.done();
 });
-
-
-
-
-
-
-
 
 // app.get('/jquery.min.js', function (req, res) {
 //	res.redirect('https://code.jquery.com/jquery-3.2.1.min.js');
 //	res.sendFile(path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.min.js'));
 // });
 
+// GET http://localhost:3001/script.js [HTTP/1.1 404 Not Found 1ms]
+// The resource from “http://localhost:3001/script.js” was blocked due to MIME type mismatch (X-Content-Type-Options: nosniff).[Learn More]
+
 app.get('/script.js', function (req, res) {
 	res.sendFile(path.join(__dirname, '..', 'script.js'));
 });
 
-app.get('/css/style.css', function (req, res) {
-	res.sendFile(path.join(__dirname, '..', 'public', 'css', 'style.css'));
-});
-
-// **** Request Event Handlers: End ****
-
 module.exports = app;
-
-// End of File.

@@ -240,7 +240,7 @@ function getJSONTicTacToeRequest (boardString, maxPly, descriptor = {}) {
 	let webServerPort = descriptor.port || 3000;
 	// let url = webServerProtocol + '://' + webServerName + ':' + webServerPort + '/tictactoe/' + boardString.replace(/ /g, 'E') + '/' + maxPly;
 	// let url = webServerProtocol + '://' + webServerName + ':' + webServerPort + '/tictactoe/' + boardString + '/' + maxPly;
-	let url = '/foo/' + boardString + '/' + maxPly;
+	let url = '/tictactoe/' + boardString + '/' + maxPly;
 
 	// This is essentially an augmented version of jQuery's AJAX $.getJSON()
 	// See https://api.jquery.com/jquery.getjson/
@@ -248,9 +248,9 @@ function getJSONTicTacToeRequest (boardString, maxPly, descriptor = {}) {
 		dataType: 'json',
 		url: url,
 		success: function (result) {
-			const message = 'getJSONRequest() sent to \'' + url + '\' succeeded; result is:';
+			// const message = 'getJSONRequest() sent to \'' + url + '\' succeeded; result is:';
 
-			console.log(message, result);
+			// console.log(message, result);
 			// alert(message + ' ' + JSON.stringify(result));	// eslint-disable-line no-alert
 			moveHelper(result.bestRow, result.bestColumn);
 		},
@@ -384,5 +384,3 @@ function ddlLookaheadX_onChange() {
 function ddlLookaheadO_onChange() {
     PlayerPly[ONumber] = parseInt($("#ddlLookaheadO").val(), 10);
 }
-
-// **** End of File ****

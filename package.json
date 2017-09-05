@@ -13,45 +13,35 @@
   },
   "scripts": {
     "lint": "grunt eslint",
-    "mocha": "grunt mochaTest",
     "nsp": "grunt nsp",
     "start": "nodemon src/server.js",
-    "test": "grunt test",
-    "watch": "grunt watch"
+    "test": "grunt test"
   },
   "bin": {
     "thaw-tic-tac-toe-web-app": "src/server.js"
   },
   "dependencies": {
     "express": "^4.15.4",
-    "jquery": "^3.2.1",
     "nodemon": "^1.11.0",
-    "thaw-tic-tac-toe-engine": "file:../../../LocalSandbox/Node.js/thaw-npm-packages-tgz/thaw-tic-tac-toe-engine-0.1.0.tgz"
+    "thaw-http-json-request": "0.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "chai": "^4.1.1",
-    "chai-http": "^3.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
-    "grunt-contrib-watch": "^1.0.0",
     "grunt-eslint": "^20.0.0",
-    "grunt-mocha-test": "^0.13.2",
-    "grunt-nsp": "^2.3.1",
-    "mocha": "^3.5.0"
+    "grunt-nsp": "^2.3.1"
   },
   "engineStrict": true,
   "engines": {
     "node": ">=8.0.0"
   },
   "keywords": [
-    "chai",
     "eslint",
     "express",
     "grunt",
     "jquery",
-    "mocha",
     "node",
     "nsp",
     "tic-tac-toe"
