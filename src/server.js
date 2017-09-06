@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // thaw-tic-tac-toe-web-app/src/server.js
 
 'use strict';
