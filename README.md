@@ -17,7 +17,7 @@ Git installation and launch instructions for thaw-tic-tac-toe-web-app:
 	$ grunt
 	$ npm start
 
-	Note: The command "grunt" runs lint, unit tests, and security tests.
+	Note: The command "grunt" runs lint and security tests.
 
 npm installation and launch instructions for thaw-tic-tac-toe-web-app:
 
