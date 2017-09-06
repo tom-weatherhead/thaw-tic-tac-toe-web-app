@@ -135,8 +135,6 @@ function placePiece (player, row, column) {
 	return victory; // This can return true for real or speculative moves.
 }
 
-// ****
-
 function getImagePath (imageNumber) {
 	var imageName = 'empty';
 
@@ -190,16 +188,12 @@ function moveHelper (row, col) {
 		} else {
 			isOVictory = true;
 		}
-
-		// displayTurnMessage();
-		// return;
 	}
 
 	NumberOfCurrentPlayer = 1 - NumberOfCurrentPlayer;
 	displayTurnMessage();
 
 	if (!isGameOver && PlayerIsAutomated[NumberOfCurrentPlayer]) {
-		// setTimeout('automatedMove()', 100);		// Wait for 100 ms before the next move to give the browser time to update the board.
 		// Wait for 100 ms before the next move to give the browser time to update the board.
 		setTimeout(automatedMove, 100);		// eslint-disable-line no-use-before-define
 	}
@@ -219,17 +213,9 @@ function getJSONTicTacToeRequest (boardString, maxPly, descriptor = {}) {
 	// This is essentially an augmented version of jQuery's AJAX $.getJSON()
 	// See https://api.jquery.com/jquery.getjson/
 	$.ajax({								// eslint-disable-line no-undef
-		// headers: { 'Access-Control-Allow-Origin': '*' },
-		// headers: { 'Access-Control-Allow-Origin': 'null' },
-		// crossDomain: true,
 		dataType: 'json',
-		// dataType: 'jsonp',
 		url: url,
 		success: function (result) {
-			// const message = 'getJSONRequest() sent to \'' + url + '\' succeeded; result is:';
-
-			// console.log(message, result);
-			// alert(message + ' ' + JSON.stringify(result));	// eslint-disable-line no-alert
 			moveHelper(result.bestRow, result.bestColumn);
 		},
 		error: function (error) {
