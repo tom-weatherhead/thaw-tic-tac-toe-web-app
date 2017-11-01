@@ -1,4 +1,7 @@
 # thaw-tic-tac-toe-web-app
+
+[![build status](https://secure.travis-ci.org/tom-weatherhead/thaw-tic-tac-toe-web-app.svg)](http://travis-ci.org/tom-weatherhead/thaw-tic-tac-toe-web-app)  [![downloads](https://img.shields.io/npm/dt/thaw-tic-tac-toe-web-app.svg)](https://www.npmjs.com/package/thaw-tic-tac-toe-web-app)
+
 A playable Express.js Tic-Tac-Toe Web application that uses the thaw-tic-tac-toe-web-service package as the game engine.
 
 Note: thaw-tic-tac-toe-web-service will need to be running on localhost port 3000/TCP in order for thaw-tic-tac-toe-web-app to make automatic moves.
