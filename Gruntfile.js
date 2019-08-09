@@ -1,24 +1,7 @@
+// tom-weatherhead/thaw-tic-tac-toe-web-app/Gruntfile.js
+
 'use strict';
 
-module.exports = function (grunt) {
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
-		eslint: {
-			target: [
-				'*.js',
-				'src/*.js'
-			]
-		},
-		nsp: {
-			package: grunt.file.readJSON('package.json')
-		}
-	});
-
-	// Tasks
-	grunt.loadNpmTasks('grunt-eslint');
-	grunt.loadNpmTasks('grunt-nsp');
-
-	// Aliases
-	grunt.registerTask('test', ['eslint', 'nsp']);
-	grunt.registerTask('default', ['test']);
-};
+module.exports = require('thaw-config').grunt({
+	eslint: true
+});
