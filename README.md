@@ -28,7 +28,7 @@ grunt
 npm start
 ```
 
-	Note: The command "grunt" runs lint and security tests.
+Note: The command "grunt" runs lint and security tests.
 
 npm installation and launch instructions for thaw-tic-tac-toe-web-app:
 
